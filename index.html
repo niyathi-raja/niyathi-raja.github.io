@@ -12,6 +12,21 @@
       padding: 50px;
     }
 
+    h1 {
+      font-size: 2.2em;
+    }
+
+    #countdown {
+      font-size: 1.6em;
+      margin: 20px 0;
+      background: linear-gradient(45deg, #ff99cc, #ff66b2);
+      color: white;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
     button {
       background: linear-gradient(45deg, #ff99cc, #ff66b2);
       border: none;
@@ -40,6 +55,9 @@
   <h1>💖 Welcome to the Swiftie Birthday Page! 💖</h1>
   <p>Celebrating the Lover era — with glitter, confetti, and cake!</p>
 
+  <!-- Countdown timer -->
+  <div id="countdown">Countdown loading...</div>
+
   <!-- Tap button -->
   <button onclick="playMusic()">✨ Tap here, darlin’ ✨</button>
 
@@ -52,9 +70,33 @@
   </iframe>
 
   <script>
+    // 🎶 Show music player when button is clicked
     function playMusic() {
       document.getElementById("musicPlayer").style.display = "block";
     }
+
+    // 🎂 Countdown timer
+    const countdownEl = document.getElementById("countdown");
+    const eventDate = new Date("December 27, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance < 0) {
+        countdownEl.innerHTML = "🎉 It's Harsha’s Birthdayyyy! 💖";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `💫 ${days}d ${hours}h ${minutes}m ${seconds}s 💫`;
+    }
+
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
