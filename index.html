@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Countdown</title>
 
-<!-- TT Bluescreens from CDNFonts -->
+<!-- TT Bluescreens font -->
 <link href="https://fonts.cdnfonts.com/css/tt-bluescreens" rel="stylesheet">
 
 <style>
@@ -20,28 +20,31 @@
     font-family: 'TT Bluescreens', sans-serif;
     color: #d4cd8a;
     text-align: center;
-    letter-spacing: 2px;
   }
 
   #countdown {
-    font-size: 5em;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    margin-bottom: 10px;
+    font-size: 33vh; /* roughly one-third of screen height */
+    line-height: 1;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+    margin: 0;
   }
 
   #expire-text {
-    font-size: 1.5em;
+    font-size: 2vh;
+    margin-top: 20px;
     text-transform: uppercase;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    letter-spacing: 2px;
   }
 
   @media (max-width: 600px) {
-    #countdown { font-size: 3em; }
+    #countdown { font-size: 20vh; }
+    #expire-text { font-size: 1.8vh; }
   }
 </style>
 </head>
 <body>
-  <div id="countdown">00 : 00 : 00 : 00</div>
+  <div id="countdown">00 days 00 hours 00 minutes 00 seconds</div>
   <div id="expire-text">EXPIRES DECEMBER 27 AT 12:00AM ET</div>
 
   <script>
@@ -53,7 +56,7 @@
       const diff = targetDate - now;
 
       if (diff <= 0) {
-        countdownEl.textContent = "00 : 00 : 00 : 00";
+        countdownEl.textContent = "00 days 00 hours 00 minutes 00 seconds";
         return;
       }
 
@@ -63,10 +66,10 @@
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
       countdownEl.textContent =
-        String(days).padStart(2, '0') + ' : ' +
-        String(hours).padStart(2, '0') + ' : ' +
-        String(minutes).padStart(2, '0') + ' : ' +
-        String(seconds).padStart(2, '0');
+        days + " days " +
+        hours + " hours " +
+        minutes + " minutes " +
+        seconds + " seconds";
     }
 
     setInterval(updateCountdown, 1000);
