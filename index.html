@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Countdown</title>
+<title>Swiftie Countdown</title>
 
-<!-- TT Bluescreens font -->
+<!-- Antonio font -->
 <link href="https://fonts.googleapis.com/css2?family=Antonio&display=swap" rel="stylesheet">
 
 <style>
   html, body {
     height: 100%;
     margin: 0;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,11 +22,14 @@
     text-align: center;
   }
 
+  /* COUNTDOWN SECTION */
   .countdown-container {
     display: flex;
     gap: 60px;
     text-transform: uppercase;
     align-items: center;
+    z-index: 2;
+    position: relative;
   }
 
   .time-box {
@@ -39,26 +43,69 @@
     letter-spacing: 2px;
     opacity: 0.99;
     margin-bottom: 10px;
+    text-shadow: 4px 4px 8px rgba(0,0,0,0.7);
   }
-.number {
-  font-family: 'Antonio', sans-serif;
-  font-size: 25vh;
-  color: #C7C57E;
-  font-style: normal; /* Antonio has no italic */
-  transform: skew(-8deg); /* tilts the text slightly */
-  text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.6); /* right-side black shadow */
 
-}
+  .number {
+    font-size: 25vh;
+    color: #C7C57E;
+    transform: skew(-8deg);
+    text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  /* VINYLS */
+  .vinyl {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: spin 8s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.6));
+    opacity: 0.8;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .vinyl1 {
+    background-image: url('vinyl1.png');
+    top: 100px;
+    left: 120px;
+    animation-duration: 9s;
+  }
+
+  .vinyl2 {
+    background-image: url('vinyl2.png');
+    bottom: 100px;
+    right: 120px;
+    animation-direction: reverse;
+    animation-duration: 11s;
+  }
+
+  .vinyl:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   @media (max-width: 700px) {
     .countdown-container { gap: 20px; }
-    .label { font-size: 1.8vh; }
-    .number { font-size: 14vh; }
+    .label { font-size: 2vh; }
+    .number { font-size: 12vh; }
+    .vinyl { width: 180px; height: 180px; }
   }
 </style>
 </head>
+
 <body>
+  <!-- Rotating vinyls -->
+  <div class="vinyl vinyl1"></div>
+  <div class="vinyl vinyl2"></div>
+
+  <!-- Countdown -->
   <div class="countdown-container">
     <div class="time-box">
       <div class="label">DAYS</div>
