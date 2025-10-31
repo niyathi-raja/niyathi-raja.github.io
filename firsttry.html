@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stay Stay Stay 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Antonio&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #0a0a0a 20%, #000 100%);
+    font-family: 'Antonio', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #C7C57E;
+  }
+
+  #start-btn {
+    background-color: #ffb6c1;
+    color: #4b2c4d;
+    border: none;
+    padding: 25px 50px;
+    font-size: 2rem;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+  }
+  #start-btn:hover { transform: scale(1.1); }
+
+  .hidden { display: none; }
+
+  .countdown-container {
+    display: flex;
+    gap: 40px;
+    text-transform: uppercase;
+    align-items: center;
+  }
+
+  .vinyl {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: spin 10s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.6));
+    opacity: 0.9;
+  }
+  .vinyl1 { background-image: url('vinyl1.png'); top: 100px; left: 150px; }
+  .vinyl2 { background-image: url('vinyl2.png'); bottom: 100px; right: 150px; animation-direction: reverse; }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .number { font-size: 10vh; text-shadow: 4px 3px 2px rgba(0,0,0,0.7); }
+  .label  { font-size: 3vh; }
+
+  iframe {
+    border-radius: 12px;
+    margin-top: 30px;
+    width: 320px;
+    height: 380px;
+  }
+</style>
+</head>
+<body>
+
+  <button id="start-btn">Click here… and Stay Stay Stay 💖</button>
+
+  <div id="content" class="hidden">
+    <div class="vinyl vinyl1"></div>
+    <div class="vinyl vinyl2"></div>
+
+    <div class="countdown-container">
+      <div class="time-box">
+        <div class="label">Days</div>
+        <div class="number" id="days">00</div>
+      </div>
+      <div class="time-box">
+        <div class="label">Hours</div>
+        <div class="number" id="hours">00</div>
+      </div>
+      <div class="time-box">
+        <div class="label">Minutes</div>
+        <div class="number" id="minutes">00</div>
+      </div>
+      <div class="time-box">
+        <div class="label">Seconds</div>
+        <div class="number" id="seconds">00</div>
+      </div>
+    </div>
+
+    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1PfYnYcpw8w"
+      frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"></iframe>
+  </div>
+
+<script>
+const targetDate = new Date("December 27, 2025 00:00:00 EST").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+  if (diff <= 0) return;
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const s = Math.floor((diff % (1000*60)) / 1000);
+  days.textContent = d;
+  hours.textContent = h;
+  minutes.textContent = m;
+  seconds.textContent = s;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  document.getElementById('start-btn').classList.add('hidden');
+  document.getElementById('content').classList.remove('hidden');
+});
+</script>
+
+</body>
+</html>
