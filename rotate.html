@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spinning Vinyl</title>
+
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* black background like a record player */
+  }
+
+  img {
+    width: 350px;             /* adjust size here */
+    height: 350px;
+    animation: spin 6s linear infinite; /* rotation */
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.6)); /* subtle glow */
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+  <!-- your uploaded image -->
+  <img src="vinyl1.png" alt="Spinning Vinyl">
+
+</body>
+</html>
