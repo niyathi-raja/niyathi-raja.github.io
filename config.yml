@@ -1,0 +1,11 @@
+theme: "folklore"
+title: "🍰 A Swiftie Storybook Birthday"
+description: "soft cardigan energy. birthday candles in the woods."
+colors:
+  background: "#f5f2ef"
+  text: "#4a3f35"
+  accent: "#bfa58a"
+features:
+  - forest_background: true
+  - acoustic_music: "https://open.spotify.com/playlist/37i9dQZF1DXaUDcU6KDCj4"
+  - handwritten_font: true
