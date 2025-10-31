@@ -3,79 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spinning Vinyls</title> 
+<title>Spinning Vinyls</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Antonio&display=swap" rel="stylesheet">
 
 <style>
   html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
-    background: radial-gradient(circle at center, #0d0d0d 20%, #000 100%);
+    background: radial-gradient(circle at center, #0a0a0a 20%, #000 100%);
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Antonio', sans-serif;
   }
 
-  /* Common vinyl style */
   .vinyl {
     position: absolute;
-    width: 200px;
-    height: 200px;
-    background: url('vinyl.png') center/contain no-repeat;
+    width: 240px;
+    height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     animation: spin 8s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.6));
     opacity: 0.9;
-    filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.6));
+    transition: transform 0.3s ease-in-out;
   }
 
-  /* Different placements */
-  .top-left {
-    top: 50px;
-    left: 80px;
+  .vinyl1 {
+    background-image: url('vinyl1.png');
+    top: 120px;
+    left: 180px;
+    animation-duration: 9s;
   }
 
-  .top-right {
-    top: 50px;
-    right: 80px;
-    animation-direction: reverse; /* spins opposite direction */
-    animation-duration: 10s;
+  .vinyl2 {
+    background-image: url('vinyl2.png');
+    bottom: 120px;
+    right: 180px;
+    animation-direction: reverse;
+    animation-duration: 11s;
   }
 
-  .bottom-left {
-    bottom: 50px;
-    left: 80px;
-    animation-duration: 12s;
-  }
-
-  .bottom-right {
-    bottom: 50px;
-    right: 80px;
-  }
-
-  /* The spin animation */
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
 
-  /* Optional text overlay */
   h1 {
     position: relative;
     color: #C7C57E;
-    font-family: 'Antonio', sans-serif;
     font-size: 4vw;
-    letter-spacing: 4px;
-    text-shadow: 4px 3px 2px rgba(0,0,0,0.6);
+    text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
+    letter-spacing: 3px;
     z-index: 2;
+  }
+
+  .vinyl:hover {
+    transform: scale(1.05);
   }
 </style>
 </head>
-<body>
-  <!-- Vinyls in each corner -->
-  <div class="vinyl top-left"></div>
-  <div class="vinyl top-right"></div>
-  <div class="vinyl bottom-left"></div>
-  <div class="vinyl bottom-right"></div>
 
+<body>
+  <div class="vinyl vinyl1"></div>
+  <div class="vinyl vinyl2"></div>
   <h1>Now Spinning 🎶</h1>
 </body>
 </html>
