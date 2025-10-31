@@ -132,12 +132,15 @@
       <div class="number" id="seconds">00</div>
     </div>
   </div>
-<iframe style="border-radius:12px"
-  src="https://open.spotify.com/album/1pzvBxYgT6OVwJLtHkrdQK?si=nhwHUMWjSvWLlNk9QkfEqg"
-  width="40%" height="152" frameborder="0" allowfullscreen
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-  loading="lazy">
-</iframe>
+<div style="position:fixed; bottom:30px; right:35px; z-index:10;">
+  <iframe style="border-radius:10px; box-shadow:0 0 12px #0005;"
+    src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID"
+    width="280" height="80" frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
+</div>
+
 
   <script>
     const targetDate = new Date("December 27, 2025 00:00:00 EST").getTime();
