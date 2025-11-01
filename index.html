@@ -22,6 +22,42 @@
     text-align: center;
   }
 
+  /* INTRO SCREEN */
+  .intro-screen {
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    color: #C7C57E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+    transition: opacity 1s ease;
+  }
+
+  .intro-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #intro-btn {
+    background: none;
+    border: 2px solid #C7C57E;
+    color: #C7C57E;
+    padding: 20px 40px;
+    font-family: 'Antonio', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  #intro-btn:hover {
+    background: #C7C57E;
+    color: black;
+  }
+
   /* COUNTDOWN SECTION */
   .countdown-container {
     display: flex;
@@ -118,22 +154,7 @@
     z-index: 5;
   }
 
-  /* START BUTTON */
-  #start-btn {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    z-index: 10;
-    padding: 12px 24px;
-    background: #C7C57E;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Antonio', sans-serif;
-    font-size: 20px;
-    cursor: pointer;
-  }
-
-  .hidden {
+  .spotify-player.hidden {
     display: none;
   }
 
@@ -148,6 +169,11 @@
 </head>
 
 <body>
+  <!-- Intro Screen -->
+  <div class="intro-screen" id="intro-screen">
+    <button id="intro-btn">not that sus right?</button>
+  </div>
+
   <!-- Rotating vinyls -->
   <div class="vinyl vinyl1"></div>
   <div class="vinyl vinyl2"></div>
@@ -174,13 +200,20 @@
     </div>
   </div>
 
-  <!-- Spotify album embed -->
-  <div class="spotify-player">
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2lyfq5M3xfm2QhtvmfKa14?utm_source=generator" width="100%" height="100" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <!-- Spotify Player -->
+  <div class="spotify-player hidden" id="spotify-container">
+    <iframe
+      style="border-radius:12px"
+      src="https://open.spotify.com/embed/playlist/2lyfq5M3xfm2QhtvmfKa14?utm_source=generator&theme=1"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
   </div>
 
-  <!-- Start Button + Audio -->
-  <button id="start-btn">Start</button>
+  <!-- Background Music -->
   <audio id="bg-music" src="folklore.mp3"></audio>
 
   <script>
@@ -189,14 +222,6 @@
     function updateCountdown() {
       const now = new Date().getTime();
       const diff = targetDate - now;
-
-      if (diff <= 0) {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-        return;
-      }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -212,10 +237,17 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Start button + audio
-    document.getElementById('start-btn').addEventListener('click', () => {
-      document.getElementById('start-btn').classList.add('hidden');
-      var audio = document.getElementById('bg-music');
+    // Intro screen + music logic
+    const introScreen = document.getElementById('intro-screen');
+    const spotifyContainer = document.getElementById('spotify-container');
+    const introBtn = document.getElementById('intro-btn');
+    const audio = document.getElementById('bg-music');
+
+    introBtn.addEventListener('click', () => {
+      introScreen.classList.add('hidden');
+      spotifyContainer.classList.remove('hidden');
+      
+      // Play background music
       audio.loop = true;
       audio.volume = 0.4;
       audio.play();
