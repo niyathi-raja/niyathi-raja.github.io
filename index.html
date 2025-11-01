@@ -186,6 +186,11 @@
       document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
       document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
     }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
 <div style="
   position:fixed;
   bottom:40px;
@@ -227,9 +232,5 @@
     style="border:none; position:absolute; top:0; left:0; z-index:1;">
   </iframe>
 </div>
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
 </body>
 </html>
