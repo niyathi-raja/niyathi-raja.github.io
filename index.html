@@ -88,7 +88,7 @@
 
   .vinyl3 {
   background-image: url('vinyl3.png');
-  top: 0px; left: 200px;
+  top: -10px; left: 180px;
   animation-direction: reverse;
   animation-duration: 11s;
 }
@@ -107,6 +107,21 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+<div style="
+  width: 320px;      /* should match the iframe width */
+  height: 320px;     /* make equal to width for a perfect circle */
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 24px #0006;">
+  <iframe
+    src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1PfYnYcpw8w"
+    frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+    width="320" height="320"
+    style="border:none;">
+  </iframe>
+</div>
 
   @media (max-width: 700px) {
     .countdown-container { gap: 20px; }
