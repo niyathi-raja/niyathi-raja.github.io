@@ -86,6 +86,23 @@
     transform: scale(1.05);
   }
 
+  .vinyl3 {
+  background-image: url('vinyl3.png');
+  top: 100px; left: 250px;
+  animation-direction: reverse;
+  animation-duration: 11s;
+}
+
+  .vinyl4 {
+  background-image: url('vinyl4.png');
+  bottom: 30px; left: -10%;
+  animation-direction: reverse;
+  animation-duration: 11s;
+}
+  .vinyl:hover {
+    transform: scale(1.05);
+  }
+  
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -104,7 +121,8 @@
   <!-- Rotating vinyls -->
   <div class="vinyl vinyl1"></div>
   <div class="vinyl vinyl2"></div>
-
+  <div class="vinyl vinyl3"></div>
+  <div class="vinyl vinyl4"></div>
 
   <!-- Countdown -->
   <div class="countdown-container">
