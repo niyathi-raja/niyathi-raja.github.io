@@ -67,67 +67,84 @@
     transition: transform 0.3s ease-in-out;
   }
 
-.vinyl1 {
-  background-image: url('vinyl1.png');
-  top: 30px;
-  left: -10%;
-  animation-duration: 9s;
-}
+  .vinyl1 {
+    background-image: url('vinyl1.png');
+    top: 30px;
+    left: -10%;
+    animation-duration: 9s;
+  }
 
-.vinyl2 {
-  background-image: url('vinyl2.png');
-  bottom: 15px;
-  left: 130px;
-  animation-direction: reverse;
-  animation-duration: 11s;
-}
-
-  .vinyl:hover {
-    transform: scale(1.05);
+  .vinyl2 {
+    background-image: url('vinyl2.png');
+    bottom: 15px;
+    left: 130px;
+    animation-direction: reverse;
+    animation-duration: 11s;
   }
 
   .vinyl3 {
-  background-image: url('vinyl3.png');
-  top: -50px; left: 150px;
-  animation-direction: reverse;
-  animation-duration: 11s;
-}
+    background-image: url('vinyl3.png');
+    top: -50px;
+    left: 150px;
+    animation-direction: reverse;
+    animation-duration: 11s;
+  }
 
   .vinyl4 {
-  background-image: url('vinyl4.png');
-  bottom: -40px; left: -10%;
-  animation-direction: reverse;
-  animation-duration: 11s;
-}
+    background-image: url('vinyl4.png');
+    bottom: -40px;
+    left: -10%;
+    animation-direction: reverse;
+    animation-duration: 11s;
+  }
+
   .vinyl:hover {
     transform: scale(1.05);
   }
-  
+
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-<div style="
-  width: 320px;      /* should match the iframe width */
-  height: 320px;     /* make equal to width for a perfect circle */
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 0 24px #0006;">
-  <iframe
-    src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1PfYnYcpw8w"
-    frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy"
-    width="320" height="320"
-    style="border:none;">
-  </iframe>
-</div>
+
+  /* SPOTIFY PLAYER */
+  .spotify-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 24px #0006;
+    z-index: 5;
+  }
+
+  /* START BUTTON */
+  #start-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 10;
+    padding: 12px 24px;
+    background: #C7C57E;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Antonio', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .hidden {
+    display: none;
+  }
 
   @media (max-width: 700px) {
     .countdown-container { gap: 20px; }
     .label { font-size: 2vh; }
     .number { font-size: 12vh; }
     .vinyl { width: 180px; height: 180px; }
+    .spotify-player { width: 200px; height: 200px; }
   }
 </style>
 </head>
@@ -159,7 +176,22 @@
     </div>
   </div>
 
-  <!-- Spotify album embed (bottom right, does not affect main orientation) -->
+  <!-- Spotify album embed -->
+  <div class="spotify-player">
+    <iframe
+      src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1PfYnYcpw8w"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+      width="320"
+      height="320"
+      style="border:none;">
+    </iframe>
+  </div>
+
+  <!-- Start Button + Audio -->
+  <button id="start-btn">Start</button>
+  <audio id="bg-music" src="folklore.mp3"></audio>
 
   <script>
     const targetDate = new Date("December 26, 2025 13:30:00 EST").getTime();
@@ -189,24 +221,15 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // Start button + audio
+    document.getElementById('start-btn').addEventListener('click', () => {
+      document.getElementById('start-btn').classList.add('hidden');
+      var audio = document.getElementById('bg-music');
+      audio.loop = true;
+      audio.volume = 0.4;
+      audio.play();
+    });
   </script>
-
-<button id="start-btn">Start</button>
-<div id="content" class="hidden">Your hidden content here</div>
-<audio id="bg-music" src="your-audio-file.mp3"></audio>
-
-<!-- Put your script before closing body tag -->
-<script>
-document.getElementById('start-btn').addEventListener('click', () => {
-  document.getElementById('start-btn').classList.add('hidden');
-  document.getElementById('content').classList.remove('hidden');
-
-  var audio = document.getElementById('bg-music');
-  audio.loop = true;
-  audio.volume = 0.4;
-  audio.play();
-});
-</script>
-<audio id="bg-music" src="folklore.mp3"></audio>
 </body>
 </html>
