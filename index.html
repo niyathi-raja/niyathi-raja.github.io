@@ -191,16 +191,22 @@
     updateCountdown();
   </script>
 
+<button id="start-btn">Start</button>
+<div id="content" class="hidden">Your hidden content here</div>
+<audio id="bg-music" src="your-audio-file.mp3"></audio>
+
+<!-- Put your script before closing body tag -->
+<script>
 document.getElementById('start-btn').addEventListener('click', () => {
   document.getElementById('start-btn').classList.add('hidden');
   document.getElementById('content').classList.remove('hidden');
 
-  // Play bg music without showing player
   var audio = document.getElementById('bg-music');
-  audio.loop = true;      // Optional: loop the music
-  audio.volume = 0.4;     // Optional: set volume
+  audio.loop = true;
+  audio.volume = 0.4;
   audio.play();
 });
+</script>
 <audio id="bg-music" src="folklore.mp3"></audio>
 </body>
 </html>
